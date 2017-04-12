@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 use Response;
 
@@ -37,8 +38,14 @@ class ContactUsController extends Controller
      */
     public function store(Request $request)
     {
-        //DB::insert('insert into contact_us (id, name) values (?, ?)', [1, 'Dayle']);
-	//return Response::json("{x:y}", 200);
+        Log::info('Showing user profile for user: '.$request);
+        $name = $request->input('name');
+        $address = $request->input('address');
+        $email = $request->input('email');
+        $telephone = $request->input('telephone');
+        $notes = $request->input('notes');
+        DB::insert('insert into contact_us (name, address, email, telephone, notes) values (?, ?, ?, ?, ?)', [$name, $address, $email, $telephone, $notes]);
+	    return Response::json("success", 200);
     }
 
     /**

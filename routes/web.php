@@ -16,5 +16,5 @@ Route::get('/', function () {
 });
 
 Route::group(array('prefix' => 'api/v1'), function() {
-   Route::resource('contactus', 'ContactUsController');	
+   Route::resource('contactUs', 'ContactUsController');
 });
