@@ -28,7 +28,11 @@ class ContactUs extends Mailable
      */
     public function build()
     {
-         return $this->from('info@xwhizztech.com')
-                        ->view('emails.contactUs');
+         return $this->from('info@xwhizz.com')
+                        ->view('emails.contactUs')
+                        ->with([
+                            'title' => 'XWhizz Technology',
+                            'content' => 'Hi Good Morning',
+                        ]);
     }
 }

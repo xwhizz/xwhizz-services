@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContactUs;
 
 use Response;
 
@@ -44,7 +46,16 @@ class ContactUsController extends Controller
         $email = $request->input('email');
         $telephone = $request->input('telephone');
         $notes = $request->input('notes');
-        DB::insert('insert into contact_us (name, address, email, telephone, notes) values (?, ?, ?, ?, ?)', [$name, $address, $email, $telephone, $notes]);
+
+        Mail::to('xwhizztech@gmail.com')->send(new ContactUs);
+
+        /*Mail::send('emails.contactUs', ['title' => $name, 'content' => $notes], function ($message)
+        {
+            $message->from('info@xwhizz.com', 'Xwhizz Technology');
+            $message->to('sandip1805@gmail.com');
+        });*/
+
+        //DB::insert('insert into contact_us (name, address, email, telephone, notes) values (?, ?, ?, ?, ?)', [$name, $address, $email, $telephone, $notes]);
 	    return Response::json("success", 200);
     }
 
