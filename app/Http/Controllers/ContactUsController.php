@@ -47,7 +47,7 @@ class ContactUsController extends Controller
         $telephone = $request->input('telephone');
         $notes = $request->input('notes');
 
-        Mail::to('xwhizztech@gmail.com')->send(new ContactUs);
+        Mail::to('xwhizztech@gmail.com')->send(new ContactUs($request));
 
         /*Mail::send('emails.contactUs', ['title' => $name, 'content' => $notes], function ($message)
         {
